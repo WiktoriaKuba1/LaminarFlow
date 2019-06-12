@@ -1,39 +1,30 @@
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.HeadlessException;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.border.Border;
+public class Keyboard extends JFrame implements KeyListener {
+    JLabel closeLabel = new JLabel("Press the \"x\" key to close me!");
+    
+    public Keyboard() {
+        super("Close me!");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        closeLabel.addKeyListener(this);
+        closeLabel.setFocusable(true);
+        add(closeLabel);
+        pack();
+        setVisible(true);
+    }
 
+    public void keyTyped(KeyEvent e) {
+        int key = e.getKeyCode();
+        if (key == KeyEvent.VK_ESCAPE) System.exit(0);
+    }
 
+    public void keyPressed(KeyEvent txt) {
+        //do nothing
+    }
 
-public class Keyboard implements KeyListener {
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
+    public void keyReleased(KeyEvent txt) {
+        //do nothing
+    }
 }
