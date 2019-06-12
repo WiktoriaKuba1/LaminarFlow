@@ -5,10 +5,10 @@ public class AnimationPanel extends JPanel {
 
     private int x;
     private int y;
-    private int sc = 40; //szerokosc cylindra
-    private int wc = 80; // wysokosc cylindra
-    private int rk = 30; // rozmiar kulki
-    private int gk = 50; // gestosc kulki
+    private int cylinderWidth = 40; //szerokosc cylindra
+    private int cylinderHeight = 80; // wysokosc cylindra
+    private int ballRadius = 30; // rozmiar kulki
+    private int ballDensity = 50; // gestosc kulki
     private Color color;
 
 
@@ -20,59 +20,61 @@ public class AnimationPanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        g2.setStroke(new BasicStroke(3));
-
+        
+        g2.setStroke(new BasicStroke(3)); //ustawienie grubosci linii
         g.setColor(new Color(0x66FFC8CF, true));
-        g.fillRect(0,0,399,299); // tło
+        g.fillRect(0,0,900,450); // tło
 
 
         g.setColor(new Color(0x0500FF));
-        g.fillOval(200 - rk/2, y + 20 , rk, rk); // kulka
-        g2.setStroke(new BasicStroke(1));
+        g.fillOval(450 - ballRadius/2, y + 40 , ballRadius, ballRadius); // kulka
+        
 
         g2.setStroke(new BasicStroke(3));
-        g.setColor(color);
-        g.fillRect(200 - sc/2 + 1,280 - wc, sc -1, wc); // ciecz
+        g.setColor(color);  
+        g.fillRect(450 - cylinderWidth/2 + 1,425 - cylinderHeight, cylinderWidth -1, cylinderHeight); // ciecz
 
         g.setColor(new Color(0xFF000000, true));
-        g.drawRect(0, 0, 399, 299); // obramówka
+        g.drawRect(0, 0, 900, 450); // obramówka
 
-        g.drawLine(200 - sc/2,280,200 + sc/2,280); // dol cylindra
-        g.drawLine(200 - sc/2,280 - wc,200 - sc/2,280); // bok cylindra
-        g.drawLine(200 + sc/2,280 - wc,200 + sc/2,280); // bok cylindra
+        g.drawLine(450 - cylinderWidth/2,425,450 + cylinderWidth/2,425); // dol cylindra
+        g.drawLine(450 - cylinderWidth/2,425 - cylinderHeight,450 - cylinderWidth/2,425); // bok cylindra
+        g.drawLine(450 + cylinderWidth/2,425 - cylinderHeight,450 + cylinderWidth/2,425); // bok cylindra
 
         g2.setStroke(new BasicStroke(1));
-        g.drawLine(200, y + 20 + rk/2, 230, y + rk/2 );
-        g.drawLine(230, y + rk/2 , 280, y + rk/2 ); // wskaznik
-        g.drawString("a = " + y, 245, y + rk/2 - 3);
-        g.drawString("v = " + (y+ 30), 247, y + rk/2 + 12);
-
-
+        g.drawLine(450, y + 40 + ballRadius/2, 525, y + ballRadius/2 );
+        g.drawLine(525, y + ballRadius/2 , 600, y + ballRadius/2 ); // wskaznik
+        g.drawString("a = " + y, 540, y + ballRadius/2 -3);
+        g.drawString("v = " + (y+ 30), 540, y + ballRadius/2 +11);
     }
 
+    
+    
+    
+    
     public void setX(int x) {
         this.x = x;
     }
 
     public void setY(int y) {
-        if(y + 20 + rk <= 280)
+        if(y + 20 + ballRadius <= 405)
         this.y = y;
     }
 
-    public void setSc(int sc) {
-        this.sc = sc;
+    public void setCylinderWidth(int sc) {
+        this.cylinderWidth = sc;
     }
 
-    public void setWc(int wc) {
-        this.wc = wc;
+    public void setCylinderHeight(int wc) {
+        this.cylinderHeight = wc;
     }
 
-    public void setRk(int rk) {
-        this.rk = rk;
+    public void setBallRadius(int rk) {
+        this.ballRadius = rk;
     }
 
-    public void setGk(int gk) {
-        this.gk = gk;
+    public void setBallDensity(int gk) {
+        this.ballDensity = gk;
     }
 
     public void setColor(Color color) {
